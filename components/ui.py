@@ -18,4 +18,3 @@ def render_transform_button():
 def render_output_placeholder():
     st.markdown("### 🧾 Output Code")
     st.empty()
-
