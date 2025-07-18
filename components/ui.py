@@ -19,12 +19,3 @@ def render_output_placeholder():
     st.markdown("### 🧾 Output Code")
     st.empty()
 
-def render_structured_output(response_json, language):
-    st.markdown("### 🧠 Explanation")
-    st.markdown(response_json["explanation"])
-    
-    st.markdown("### 🧾 Code")
-    st.code(response_json["code"], language=language.lower())
-    
-    st.markdown("### 🔍 Summary")
-    st.markdown(response_json["summary"])
