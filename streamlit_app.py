@@ -19,12 +19,13 @@ if ui.render_transform_button():
             result = english_to_code(user_input, language)
 
             st.markdown("### 🧠 Explanation")
-            st.markdown(f"```markdown\n{result['explanation']}\n```")
+            st.text_area("Explanation", result['explanation'], height=150, disabled=True)
 
             st.markdown("### 🧾 Code")
-            st.code(result["code"], language=language.lower())
+            st.text_area("Generated Code", result['code'], height=250, disabled=True)
 
             st.markdown("### 🔍 Summary")
-            st.markdown(f"```markdown\n{result['summary']}\n```")
+            st.text_area("Summary", result['summary'], height=150, disabled=True)
+
     else:
         st.warning("⚠️ Please enter something to transform.")
