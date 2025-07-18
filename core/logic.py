@@ -1,14 +1,14 @@
 import requests
 import streamlit as st
 
-# Access the Groq API key from Streamlit secrets
+# Groq API Key from Streamlit Secrets
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 def english_to_code(user_input: str, lang: str = "JavaScript") -> str:
     if not user_input:
         return "❗ No input provided."
 
-    prompt = f"""You are an AI that converts plain English into clean, minimal {lang} code.
+    prompt = f"""You are a coding assistant. Convert the user's casual English instruction into clean, correct {lang} code.
 
 User: {user_input}
 Code:"""
@@ -21,7 +21,7 @@ Code:"""
                 "Content-Type": "application/json"
             },
             json={
-                "model": "mixtral-8x7b-32768",
+                "model": "llama3-8b-8192",  # ✅ Works well and is available
                 "messages": [
                     {"role": "user", "content": prompt}
                 ],
