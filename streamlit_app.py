@@ -1,7 +1,8 @@
-import streamlit as st
 from components import ui
 from core.logic import english_to_code
 import os
+import streamlit as st
+import re
 
 # Load custom CSS
 with open(os.path.join("components", "style.css")) as f:
@@ -12,20 +13,26 @@ ui.render_header()
 user_input = ui.render_input_section()
 language = ui.render_language_selector()
 
-# Action
 if ui.render_transform_button():
     if user_input.strip():
         with st.spinner("✨ Morphing your logic into code..."):
-            result = english_to_code(user_input, language)
+            raw_output = english_to_code(user_input, language)
 
-            st.markdown("### 🧠 Explanation")
-            st.text_area("Explanation", result['explanation'], height=150, disabled=True)
+            # Extract Explanation, Code, Summary using regex
+            explanation = re.search(r"🧠 Explanation\n(.+?)\n\n", raw_output, re.DOTALL)
+            code = re.search(r"🧾 Code\n(.+?)\n\n", raw_output, re.DOTALL)
+            summary = re.search(r"🔍 Summary\n(.+)", raw_output, re.DOTALL)
 
-            st.markdown("### 🧾 Code")
-            st.text_area("Generated Code", result['code'], height=250, disabled=True)
+            if explanation:
+                st.markdown("### 🧠 Explanation")
+                st.markdown(explanation.group(1).strip())
 
-            st.markdown("### 🔍 Summary")
-            st.text_area("Summary", result['summary'], height=150, disabled=True)
+            if code:
+                st.markdown("### 🧾 Code")
+                st.code(code.group(1).strip(), language=language.lower())
 
+            if summary:
+                st.markdown("### 🔍 Summary")
+                st.markdown(summary.group(1).strip())
     else:
         st.warning("⚠️ Please enter something to transform.")
