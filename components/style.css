@@ -1,0 +1,28 @@
+/* style.css */
+.title {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    color: #04d9ff;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+    margin-bottom: 1.5em;
+}
+
+textarea, .stTextInput {
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+}
+
+.stButton>button {
+    background-color: #04d9ff;
+    color: white;
+    border-radius: 12px;
+    padding: 0.6em 1.2em;
+    font-weight: bold;
+}
