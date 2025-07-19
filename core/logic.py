@@ -12,7 +12,7 @@ def english_to_code(user_input: str, lang: str = "JavaScript") -> dict:
         }
 
     prompt = f"""
-You are an expert coding assistant. Convert the following instruction into a clean {lang} script. Respond ONLY in this JSON format:
+You are an expert coding assistant. You can code in any language possible, Convert the following instruction into a clean {lang} script. Respond ONLY in this JSON format:
 {{
   "explanation": "<brief explanation of the logic>",
   "code": "<final working {lang} code>",
